@@ -6,7 +6,13 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Profissional/CLionProjects/Pre-processador/main.c
+C:/Users/Igor/CLionProjects/Pre-processador/main.c
 stdio.h
 -
+stdlib.h
+C:/Users/Igor/CLionProjects/Pre-processador/stdlib.h
+ctype.h
+-
+locale.h
+C:/Users/Igor/CLionProjects/Pre-processador/locale.h
 
