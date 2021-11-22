@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 int main(){
-    printf("Alo mundo!!");
-    printf("Ola Fernando!!\n");
+    int x;
+    scanf("%d", &x);
+    printf("Ola Fernando!!%d\n", x);
     return 0;
 }
