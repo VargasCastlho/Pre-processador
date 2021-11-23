@@ -76,6 +76,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Igor/CLionProjects/Pre-processador/arquivo_entrada.c">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="C:/Users/Igor/CLionProjects/Pre-processador/bib.h">
+			<Option target="untitled1"/>
+		</Unit>
 		<Unit filename="C:/Users/Igor/CLionProjects/Pre-processador/main.c">
 			<Option target="untitled1"/>
 		</Unit>

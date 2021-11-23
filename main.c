@@ -5,8 +5,9 @@
 
 
 void clone(FILE *arq_original, FILE *arq_destino);
-
+void pre_processador(FILE *arq_destino);
 void str_trim(char *trim_origem,char *trim_destino);
+void comentarios(FILE *arq);
 
 int main(){
     char conteudo, auxiliar[100], arq_original[100],arq_destino[100];
@@ -24,9 +25,12 @@ int main(){
         fgets(arq_destino,100,stdin);
         destino = fopen(arq_destino,"w");
         clone(origem,destino);
+        fclose(origem);
+        fclose(destino);
+        destino = fopen(arq_destino,"a");
     }
 
-    fclose(origem);
+
     fclose(destino);
     return 0;
 }
@@ -50,29 +54,47 @@ void str_trim(char *trim_origem, char *trim_destino) {
     int flag = 0;
 
 
-    while(*trim_origem) {
+    while(*trim_origem){
         if(!isspace((unsigned char) *trim_origem) && flag == 0) {
             *trim_destino++ = *trim_origem;
             flag = 1;
-        }
-
-
-        trim_origem++;
-        if(flag == 1) {
-            *trim_destino++ = *trim_origem;
-        }
     }
 
 
-    while(1) {
+        trim_origem++;
+        if(flag == 1)
+            *trim_destino++ = *trim_origem;
+
+    }
+
+
+    while(1){
         trim_destino--;
-
-
         if(!isspace((unsigned char) *trim_destino) && flag == 0) {
             break;
         }
-
         flag = 0;
         *trim_destino = '\0';
     }
 }
+
+void comentarios(FILE *arq){
+    char conteudo = fgetc(arq);
+    if(conteudo == '/'){
+        comentarios(arq);
+        if(conteudo == '/'){
+            while((conteudo = fgetc(arq))!= '\n'){
+
+            }
+        }
+    }
+    else
+        comentarios(arq);
+}
+
+
+void pre_processador(FILE *arq_destino){
+    comentarios(arq_destino);
+    rewind(arq_destino);
+}
+
