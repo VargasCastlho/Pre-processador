@@ -1,3 +1,0 @@
-C:/Users/Profissional/CLionProjects/Pre-processador/cmake-build-release/CMakeFiles/untitled1.dir
-C:/Users/Profissional/CLionProjects/Pre-processador/cmake-build-release/CMakeFiles/edit_cache.dir
-C:/Users/Profissional/CLionProjects/Pre-processador/cmake-build-release/CMakeFiles/rebuild_cache.dir
