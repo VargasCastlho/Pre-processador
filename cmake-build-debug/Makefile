@@ -152,29 +152,29 @@ arquivo_entrada.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/arquivo_entrada.c.s
 .PHONY : arquivo_entrada.c.s
 
-main.obj: main.c.obj
-.PHONY : main.obj
+pre_process.obj: pre_process.c.obj
+.PHONY : pre_process.obj
 
 # target to build an object file
-main.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/main.c.obj
-.PHONY : main.c.obj
+pre_process.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/pre_process.c.obj
+.PHONY : pre_process.c.obj
 
-main.i: main.c.i
-.PHONY : main.i
+pre_process.i: pre_process.c.i
+.PHONY : pre_process.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/main.c.i
-.PHONY : main.c.i
+pre_process.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/pre_process.c.i
+.PHONY : pre_process.c.i
 
-main.s: main.c.s
-.PHONY : main.s
+pre_process.s: pre_process.c.s
+.PHONY : pre_process.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/main.c.s
-.PHONY : main.c.s
+pre_process.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/pre_process.c.s
+.PHONY : pre_process.c.s
 
 # Help Target
 help:
@@ -188,9 +188,9 @@ help:
 	@echo ... arquivo_entrada.obj
 	@echo ... arquivo_entrada.i
 	@echo ... arquivo_entrada.s
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... pre_process.obj
+	@echo ... pre_process.i
+	@echo ... pre_process.s
 .PHONY : help
 
 

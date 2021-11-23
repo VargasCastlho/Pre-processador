@@ -65,18 +65,18 @@ include CMakeFiles/untitled1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/untitled1.dir/flags.make
 
-CMakeFiles/untitled1.dir/main.c.obj: CMakeFiles/untitled1.dir/flags.make
-CMakeFiles/untitled1.dir/main.c.obj: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Igor\CLionProjects\Pre-processador\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/untitled1.dir/main.c.obj"
-	C:\msys64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\untitled1.dir\main.c.obj -c C:\Users\Igor\CLionProjects\Pre-processador\main.c
+CMakeFiles/untitled1.dir/pre_process.c.obj: CMakeFiles/untitled1.dir/flags.make
+CMakeFiles/untitled1.dir/pre_process.c.obj: ../pre_process.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Igor\CLionProjects\Pre-processador\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/untitled1.dir/pre_process.c.obj"
+	C:\msys64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\untitled1.dir\pre_process.c.obj -c C:\Users\Igor\CLionProjects\Pre-processador\pre_process.c
 
-CMakeFiles/untitled1.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/untitled1.dir/main.c.i"
-	C:\msys64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Igor\CLionProjects\Pre-processador\main.c > CMakeFiles\untitled1.dir\main.c.i
+CMakeFiles/untitled1.dir/pre_process.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/untitled1.dir/pre_process.c.i"
+	C:\msys64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Igor\CLionProjects\Pre-processador\pre_process.c > CMakeFiles\untitled1.dir\pre_process.c.i
 
-CMakeFiles/untitled1.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/untitled1.dir/main.c.s"
-	C:\msys64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Igor\CLionProjects\Pre-processador\main.c -o CMakeFiles\untitled1.dir\main.c.s
+CMakeFiles/untitled1.dir/pre_process.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/untitled1.dir/pre_process.c.s"
+	C:\msys64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Igor\CLionProjects\Pre-processador\pre_process.c -o CMakeFiles\untitled1.dir\pre_process.c.s
 
 CMakeFiles/untitled1.dir/arquivo_entrada.c.obj: CMakeFiles/untitled1.dir/flags.make
 CMakeFiles/untitled1.dir/arquivo_entrada.c.obj: ../arquivo_entrada.c
@@ -93,13 +93,13 @@ CMakeFiles/untitled1.dir/arquivo_entrada.c.s: cmake_force
 
 # Object files for target untitled1
 untitled1_OBJECTS = \
-"CMakeFiles/untitled1.dir/main.c.obj" \
+"CMakeFiles/untitled1.dir/pre_process.c.obj" \
 "CMakeFiles/untitled1.dir/arquivo_entrada.c.obj"
 
 # External object files for target untitled1
 untitled1_EXTERNAL_OBJECTS =
 
-untitled1.exe: CMakeFiles/untitled1.dir/main.c.obj
+untitled1.exe: CMakeFiles/untitled1.dir/pre_process.c.obj
 untitled1.exe: CMakeFiles/untitled1.dir/arquivo_entrada.c.obj
 untitled1.exe: CMakeFiles/untitled1.dir/build.make
 untitled1.exe: CMakeFiles/untitled1.dir/linklibs.rsp

@@ -4,5 +4,5 @@
 CMakeFiles/untitled1.dir/arquivo_entrada.c.obj: \
  ../arquivo_entrada.c \
  ../bib.h
-CMakeFiles/untitled1.dir/main.c.obj: \
- ../main.c
+CMakeFiles/untitled1.dir/pre_process.c.obj: \
+ ../pre_process.c

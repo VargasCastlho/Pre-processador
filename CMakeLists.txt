@@ -3,4 +3,4 @@ project(untitled1 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(untitled1 main.c bib.h arquivo_entrada.c)
+add_executable(untitled1 pre_process.c bib.h arquivo_entrada.c)
