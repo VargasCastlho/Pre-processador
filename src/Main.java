@@ -24,16 +24,20 @@ public class Main {
     }
 
     static String ComentarioSimples(BufferedReader br) throws IOException {
-        String linha = null;
-        String str;
+        String arq = null;
+        String linha;
         while (br.ready()) {
-            str = br.readLine() + "\n";
-            if (str.contains("//")==false)
-                linha += str;
+            linha = br.readLine() + "\n";
+            if (linha.contains("//")==false)
+                arq += linha;
             else{
-                linha += str.substring(0, str.indexOf("//")) + "\n";
+                int index = linha.indexOf("//");
+                if(index==0)
+                    arq += linha.substring(0, index);
+                else
+                    arq += linha.substring(0, index) + "\n";
             }
         }
-        return linha;
+        return arq;
     }
 }
