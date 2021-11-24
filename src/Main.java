@@ -10,20 +10,20 @@ public class Main {
     }
 
     static void AtivarComentarioSimples(String nome) throws IOException {
-        BufferedReader br = null;
-        String linha = null;
+        BufferedReader br;
+        String arquivo;
         br = TratamentoArquivo.LeituraAbrirArquivo(nome);
-        linha = ProcessamentoArquivo.ComentarioSimples(br);
+        arquivo = ProcessamentoArquivo.ComentarioSimples(br);
         TratamentoArquivo.LeituraFecharArquivo(br);
-        TratamentoArquivo.EscritaArquivo(linha, nome);
+        TratamentoArquivo.EscritaArquivo(arquivo, nome);
     }
 
     static void AtivarComentarioComplexo(String nome) throws IOException {
         BufferedReader br;
-        String linha;
+        String arquivo;
         br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
-        linha = ProcessamentoArquivo.ComentarioComplexo(br);
+        arquivo = ProcessamentoArquivo.ComentarioComplexo(br);
         TratamentoArquivo.LeituraFecharArquivo(br);
-        TratamentoArquivo.EscritaArquivo(linha, nome);
+        TratamentoArquivo.EscritaArquivo(arquivo, nome);
     }
 }
