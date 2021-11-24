@@ -48,4 +48,30 @@ public class ProcessamentoArquivo {
         }
         return arq;
     }
+    static String TratarBiblioteca(BufferedReader br) throws IOException {
+
+        /*
+
+            Lógica
+            Aqui, em especial, declararemos uma variavel do tipo string.
+            Nessa variavel armazenaremos apenas o arquivo .h do include referente.
+            Abriremos o arquivo em uma auxiliar
+            Essa auxiliar irá ser passada para a string principal(linha).
+
+         */
+
+
+        String arq ="";
+        String linha;
+        String biblioteca;
+        BufferedReader aux;
+        while(br.ready()) {
+            linha = br.readLine()+"\n";
+            if(linha.contains("#include")) {
+                String include = "#include ";
+                int index = linha.indexOf("#include ");
+                biblioteca  = linha.substring(index,include.length());//aqui faz uma espécie de linha - "#include " e armazena na variavel biblioteca
+                aux = LeituraAbrirArquivo(biblioteca);
+
+            }
 }
