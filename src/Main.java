@@ -8,17 +8,26 @@ public class Main {
 
     static void ProcessaArquivo() {
         try {
+            BufferedReader br;
             String linha;
             String nome;
             nome = JOptionPane.showInputDialog(null, "Entre com o nome do arquivo");
-            BufferedReader br = new BufferedReader(new FileReader("arquivo_entrada.c"));
+            br = LeituraAbrirArquivo("arquivo_entrada.c");
             linha = ComentarioSimples(br);
-            br.close();
+            LeituraFecharArquivo(br);
             EscritaArquivo(linha);
             System.out.println(linha);
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+    }
+
+    static BufferedReader LeituraAbrirArquivo(String nome) throws IOException {
+        return new BufferedReader(new FileReader(nome));
+    }
+
+    static void LeituraFecharArquivo(BufferedReader br) throws IOException {
+        br.close();
     }
 
     static void EscritaArquivo(String processado) throws IOException {
