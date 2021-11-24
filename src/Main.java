@@ -1,7 +1,5 @@
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,18 +11,25 @@ public class Main {
             String linha;
             String nome;
             nome = JOptionPane.showInputDialog(null, "Entre com o nome do arquivo");
-
             BufferedReader br = new BufferedReader(new FileReader("arquivo_entrada.c"));
             linha = ComentarioSimples(br);
             br.close();
+            EscritaArquivo(linha);
             System.out.println(linha);
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
     }
 
+    static void EscritaArquivo(String processado) throws IOException {
+        FileWriter arq = new FileWriter("arquivo_pre_processado.c");
+        PrintWriter gravarArq = new PrintWriter(arq);
+        gravarArq.printf("%s",processado);
+        arq.close();
+    }
+
     static String ComentarioSimples(BufferedReader br) throws IOException {
-        String arq = null;
+        String arq = "";
         String linha;
         while (br.ready()) {
             linha = br.readLine() + "\n";
