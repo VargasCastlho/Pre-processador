@@ -4,11 +4,6 @@
 #define QUINZE NUM
 #define PLAY PS
 
-/*
-    Isso aqui vai ser apagado
-           (talvez)
-
-*/
 
 int main(){
     char console[QUINZE] = PLAY;
