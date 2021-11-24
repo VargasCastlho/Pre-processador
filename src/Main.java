@@ -9,23 +9,21 @@ public class Main {
             AtivarComentarioComplexo(nome);
     }
 
-    static BufferedReader AtivarComentarioSimples(String nome) throws IOException {
+    static void AtivarComentarioSimples(String nome) throws IOException {
         BufferedReader br = null;
         String linha = null;
         br = TratamentoArquivo.LeituraAbrirArquivo(nome);
         linha = ProcessamentoArquivo.ComentarioSimples(br);
         TratamentoArquivo.LeituraFecharArquivo(br);
         TratamentoArquivo.EscritaArquivo(linha, nome);
-        return br;
     }
 
-    static BufferedReader AtivarComentarioComplexo(String nome) throws IOException {
+    static void AtivarComentarioComplexo(String nome) throws IOException {
         BufferedReader br;
         String linha;
         br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
         linha = ProcessamentoArquivo.ComentarioComplexo(br);
         TratamentoArquivo.LeituraFecharArquivo(br);
         TratamentoArquivo.EscritaArquivo(linha, nome);
-        return br;
     }
 }
