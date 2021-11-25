@@ -43,9 +43,9 @@ public class ProcessamentoArquivo {
                 //chegando aqui quer dizer que a linha contem o "*/"
                 int indexSegundo = linha.indexOf("*/");
                 if (indexSegundo + 2 == linha.length())
-                    arq += linha.substring(indexSegundo + 2, linha.length());
+                    arq += linha.substring(indexSegundo + 2);
                 else
-                    arq += linha.substring(indexSegundo + 2, linha.length()) + "\n";
+                    arq += linha.substring(indexSegundo + 2) + "\n";
             }
         }
         return arq;
