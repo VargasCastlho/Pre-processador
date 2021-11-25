@@ -1,5 +1,4 @@
 #include "bib.h"
-#include "stdio.h"
 #define DEZ 10
 #define QUINZE NUM
 #define PLAY PS
