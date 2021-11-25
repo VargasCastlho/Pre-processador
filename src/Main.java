@@ -6,9 +6,9 @@ public class Main {
         //nome = JOptionPane.showInputDialog(null, "Entre com o nome do arquivo");
         nome = "arquivo_entrada.c";
         AtivarCriarArquivoProcessado(nome);
+        AtivarTratarBiblioteca(nome);
         AtivarComentarioSimples(nome);
         AtivarComentarioComplexo(nome);
-        AtivarTratarBiblioteca(nome);
     }
 
     static void AtivarCriarArquivoProcessado(String nome) throws IOException {
