@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ProcessamentoArquivo {
@@ -50,33 +51,40 @@ public class ProcessamentoArquivo {
         return arq;
     }
 
-    static String TratarBiblioteca(BufferedReader br) throws IOException {
-
-        /*
-
-            Lógica
-            Aqui, em especial, declararemos uma variavel do tipo string.
-            Nessa variavel armazenaremos apenas o arquivo .h do include referente.
-            Abriremos o arquivo em uma auxiliar
-            Essa auxiliar irá ser passada para a string principal(linha).
-
-         */
-
-
+    static String TratarBiblioteca(BufferedReader br) {
         String arq = "";
-        String linha;
+        String arquivo = "";
         String biblioteca;
+        String linha = "";
         BufferedReader aux;
-        while (br.ready()) {
-            linha = br.readLine() + "\n";
-            if (linha.contains("#include")) {
-                String include = "#include ";
-                int index = linha.indexOf("#include ");
-                biblioteca = linha.substring(index, include.length());//aqui faz uma espécie de linha - "#include " e armazena na variavel biblioteca
-                aux = TratamentoArquivo.LeituraAbrirArquivo(biblioteca);
-
+        try {
+            while (br.ready()) {
+                linha = br.readLine() + "\n";
+                if (linha.contains("#include")) {
+                    String include = "#include ";
+                    int index = linha.indexOf(include) + 10;
+                    biblioteca = linha.substring(index, linha.length() - 2);
+                    aux = TratamentoArquivo.LeituraAbrirArquivo(biblioteca);
+                    while (aux.ready()) {
+                        arquivo += aux.readLine() + "\n";
+                    }
+                    linha = arquivo;
+                }
+                arq += linha;
             }
+        }catch (FileNotFoundException e){
+            System.out.println("Erro: "+e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return " ";
+        return arq;
+    }
+
+    static String CriarArquivoProcessado(BufferedReader br) throws IOException {
+        String arq = "";
+        while (br.ready()) {
+            arq += br.readLine() + "\n";
+        }
+        return arq;
     }
 }

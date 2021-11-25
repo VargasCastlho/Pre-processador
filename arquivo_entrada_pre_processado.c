@@ -1,16 +1,7 @@
-#include "bib.h"
-#include "stdio.h"
-#define DEZ 10
-#define QUINZE NUM
-#define PLAY PS
+#define NUM 15
+#define PS "Play Station"
 
-
-int main(){
-    char console[QUINZE] = PLAY;
-    int x = soma(DEZ,QUINZE);
-    printf("x = %d\n",x);
-    printf("%d\n",QUINZE);
-    printf("%s\n",console);
-
-    return 0;
+int soma(int x, int y) {
+    x += y;
+    return x;
 }
