@@ -9,9 +9,9 @@ public class ProcessamentoArquivo {
             linha = br.readLine() + "\n";
             if (!linha.contains("//"))
                 arq += linha;
-            else{
+            else {
                 int index = linha.indexOf("//");
-                if(index==0)
+                if (index == 0)
                     arq += linha.substring(0, index);
                 else
                     arq += linha.substring(0, index) + "\n";
@@ -19,35 +19,37 @@ public class ProcessamentoArquivo {
         }
         return arq;
     }
+
     static String ComentarioComplexo(BufferedReader br) throws IOException {
-        String arq ="";
+        String arq = "";
         String linha;
-        while(br.ready()) {
-            linha = br.readLine()+"\n";
-            if(!linha.contains("/*"))
+        while (br.ready()) {
+            linha = br.readLine() + "\n";
+            if (!linha.contains("/*"))
                 arq += linha;
-            else{
+            else {
                 int indexPrimeiro = linha.indexOf("/*");
-                if(indexPrimeiro>0)
-                    arq += linha.substring(0,indexPrimeiro)+"\n";
+                if (indexPrimeiro > 0)
+                    arq += linha.substring(0, indexPrimeiro) + "\n";
                 else
-                    arq += linha.substring(0,indexPrimeiro);
+                    arq += linha.substring(0, indexPrimeiro);
                 linha = br.readLine();
-                while(linha.contains("*/") == false){
+                while (linha.contains("*/") == false) {
                     linha = "";//tirar todas as linhas enquanto não encontrar o "*/"
                     arq += linha;
                     linha = br.readLine();
                 }
                 //chegando aqui quer dizer que a linha contem o "*/"
                 int indexSegundo = linha.indexOf("*/");
-                if(indexSegundo+2 == linha.length())
-                    arq += linha.substring(indexSegundo+2,linha.length());
+                if (indexSegundo + 2 == linha.length())
+                    arq += linha.substring(indexSegundo + 2, linha.length());
                 else
-                    arq += linha.substring(indexSegundo+2,linha.length())+"\n";
+                    arq += linha.substring(indexSegundo + 2, linha.length()) + "\n";
             }
         }
         return arq;
     }
+
     static String TratarBiblioteca(BufferedReader br) throws IOException {
 
         /*
@@ -61,17 +63,20 @@ public class ProcessamentoArquivo {
          */
 
 
-        String arq ="";
+        String arq = "";
         String linha;
         String biblioteca;
         BufferedReader aux;
-        while(br.ready()) {
-            linha = br.readLine()+"\n";
-            if(linha.contains("#include")) {
+        while (br.ready()) {
+            linha = br.readLine() + "\n";
+            if (linha.contains("#include")) {
                 String include = "#include ";
                 int index = linha.indexOf("#include ");
-                biblioteca  = linha.substring(index,include.length());//aqui faz uma espécie de linha - "#include " e armazena na variavel biblioteca
-                aux = LeituraAbrirArquivo(biblioteca);
+                biblioteca = linha.substring(index, include.length());//aqui faz uma espécie de linha - "#include " e armazena na variavel biblioteca
+                aux = TratamentoArquivo.LeituraAbrirArquivo(biblioteca);
 
             }
+        }
+        return " ";
+    }
 }
