@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class ProcessamentoArquivo {
     static String ComentarioSimples(BufferedReader br) throws IOException {
@@ -72,8 +74,8 @@ public class ProcessamentoArquivo {
                 }
                 arq += linha;
             }
-        }catch (FileNotFoundException e){
-            System.out.println("Erro: "+e.getMessage());
+        } catch (FileNotFoundException e) {
+            System.out.println("Erro: " + e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -87,4 +89,43 @@ public class ProcessamentoArquivo {
         }
         return arq;
     }
+
+    static String TratarDefine(BufferedReader br) throws IOException { //é String, botei void só para rodar e n bugar nada
+        /*
+                    LÓGICA
+            .Primeira parte:
+            Percorreremos todo o arquivo em busca de um #define
+            Quando acharmos iremos armazenar o nome da variavel e o valor da variavel em Entry diferentes.
+            .Segunda parte:
+            Percorreremos o arquivo em busca do nome da variavel e substituiremos pelo valor da variavel.
+
+
+         */
+
+        Map variavel = null;
+        /*
+            struct variavel{ (não peguei em como fazer essa struct em Map.java)
+                struct nome;
+                struct valor;
+            };
+         */
+        String linha;
+        String nomeVariavel,valorVariavel;
+        String arq = "";
+        while(br.ready()){
+            linha = br.readLine()+"\n";
+            if(linha.contains("#define")){
+                int indexNomeVariavel = linha.indexOf("#define") + 8;
+                nomeVariavel = linha.substring(indexNomeVariavel,linha.indexOf("",indexNomeVariavel));
+                int indexValorVariavel = linha.indexOf(nomeVariavel) + nomeVariavel.length();
+                valorVariavel = linha.substring(indexValorVariavel,linha.length() - 2);
+                variavel = (Map) variavel.put(variavel,nomeVariavel);
+                variavel = (Map) variavel.put(variavel,valorVariavel);
+                System.out.print (variavel);
+            }
+        }
+        return arq;
+    }
+
+
 }

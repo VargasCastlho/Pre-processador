@@ -46,4 +46,14 @@ public class Main {
         TratamentoArquivo.LeituraFecharArquivo(br);
         TratamentoArquivo.EscritaArquivo(arquivo, nome);
     }
+
+    static void AtivarTratarDefine(String nome) throws IOException {
+        BufferedReader br;
+        String arquivo;
+        br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
+        arquivo = ProcessamentoArquivo.TratarDefine(br);
+        TratamentoArquivo.LeituraFecharArquivo(br);
+        TratamentoArquivo.EscritaArquivo(arquivo,nome);
+        ProcessamentoArquivo.TratarDefine(br);
+    }
 }
