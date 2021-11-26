@@ -1,8 +1,9 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.LinkedHashMap;
 
 public class ProcessamentoArquivo {
     static String ComentarioSimples(BufferedReader br) throws IOException {
@@ -90,42 +91,52 @@ public class ProcessamentoArquivo {
         return arq;
     }
 
-    static String TratarDefine(BufferedReader br) throws IOException { //é String, botei void só para rodar e n bugar nada
-        /*
-                    LÓGICA
-            .Primeira parte:
-            Percorreremos todo o arquivo em busca de um #define
-            Quando acharmos iremos armazenar o nome da variavel e o valor da variavel em Entry diferentes.
-            .Segunda parte:
-            Percorreremos o arquivo em busca do nome da variavel e substituiremos pelo valor da variavel.
-
-
-         */
-
-        Map variavel = null;
-        /*
-            struct variavel{ (não peguei em como fazer essa struct em Map.java)
-                struct nome;
-                struct valor;
-            };
-         */
-        String linha;
+    static void TratarDefine(BufferedReader br, String nome) throws IOException { //é String, botei void só para rodar e n bugar nada
+        Map<String, String> variavelValor = new HashMap<>();
+        ArrayList<String> variavelNome = new ArrayList();
+        String linha, linhaDef;
         String nomeVariavel,valorVariavel;
-        String arq = "";
         while(br.ready()){
             linha = br.readLine()+"\n";
             if(linha.contains("#define")){
                 int indexNomeVariavel = linha.indexOf("#define") + 8;
-                nomeVariavel = linha.substring(indexNomeVariavel,linha.indexOf("",indexNomeVariavel));
-                int indexValorVariavel = linha.indexOf(nomeVariavel) + nomeVariavel.length();
-                valorVariavel = linha.substring(indexValorVariavel,linha.length() - 2);
-                variavel = (Map) variavel.put(variavel,nomeVariavel);
-                variavel = (Map) variavel.put(variavel,valorVariavel);
-                System.out.print (variavel);
+                linhaDef = linha.substring(indexNomeVariavel, linha.length()-1);
+                nomeVariavel = linha.substring(indexNomeVariavel, linhaDef.indexOf(" ")+8);
+                int indexValorVariavel = linha.indexOf(nomeVariavel)+1 + nomeVariavel.length();
+                valorVariavel = linha.substring(indexValorVariavel,linha.length() - 1);
+                variavelValor.put(nomeVariavel, valorVariavel);
+                variavelNome.add(nomeVariavel);
             }
         }
-        return arq;
+        TratamentoArquivo.LeituraFecharArquivo(br);
+        DefinirTratarDefine(variavelValor, variavelNome, nome);
     }
 
+    static void DefinirTratarDefine(Map variavelValor, ArrayList<String> variavelNome, String nome) throws IOException {
+        BufferedReader br;
+        String linha = "", linhaAntes, linhaDps;
+        String arq = "";
+        for (int j = 0; j < variavelNome.size(); j++){
+            for (int i = 0; i < variavelNome.size(); i++) {
+                br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
+                arq = "";
+                while (br.ready()) {
+                    linha = br.readLine() + "\n";
+                    if (linha.contains(variavelNome.get(i))) {
+                        if (linha.substring(0, linha.indexOf(variavelNome.get(i))).equals("#define ") && linha.substring(0, linha.indexOf(variavelNome.get(i)) + variavelNome.get(i).length()).equals("#define " + variavelNome.get(i))) {
+                            linha = "";
+                        } else {
+                            linhaAntes = linha.substring(0, linha.indexOf(variavelNome.get(i)));
+                            linhaDps = linha.substring(linha.indexOf(variavelNome.get(i)) + variavelNome.get(i).length());
+                            linha = linhaAntes + variavelValor.get(variavelNome.get(i)) + linhaDps;
+                        }
+                    }
+                    arq += linha;
+                }
+                TratamentoArquivo.LeituraFecharArquivo(br);
+                TratamentoArquivo.EscritaArquivo(arq, nome);
+            }
+        }
+    }
 
 }

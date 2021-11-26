@@ -9,6 +9,7 @@ public class Main {
         AtivarTratarBiblioteca(nome);
         AtivarComentarioSimples(nome);
         AtivarComentarioComplexo(nome);
+        AtivarTratarDefine(nome);
     }
 
     static void AtivarCriarArquivoProcessado(String nome) throws IOException {
@@ -49,11 +50,7 @@ public class Main {
 
     static void AtivarTratarDefine(String nome) throws IOException {
         BufferedReader br;
-        String arquivo;
         br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
-        arquivo = ProcessamentoArquivo.TratarDefine(br);
-        TratamentoArquivo.LeituraFecharArquivo(br);
-        TratamentoArquivo.EscritaArquivo(arquivo,nome);
-        ProcessamentoArquivo.TratarDefine(br);
+        ProcessamentoArquivo.TratarDefine(br, nome);
     }
 }
