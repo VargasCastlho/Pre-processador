@@ -95,15 +95,15 @@ public class ProcessamentoArquivo {
         Map<String, String> variavelValor = new HashMap<>();
         ArrayList<String> variavelNome = new ArrayList();
         String linha, linhaDef;
-        String nomeVariavel,valorVariavel;
-        while(br.ready()){
-            linha = br.readLine()+"\n";
-            if(linha.contains("#define")){
+        String nomeVariavel, valorVariavel;
+        while (br.ready()) {
+            linha = br.readLine() + "\n";
+            if (linha.contains("#define")) {
                 int indexNomeVariavel = linha.indexOf("#define") + 8;
-                linhaDef = linha.substring(indexNomeVariavel, linha.length()-1);
-                nomeVariavel = linha.substring(indexNomeVariavel, linhaDef.indexOf(" ")+8);
-                int indexValorVariavel = linha.indexOf(nomeVariavel)+1 + nomeVariavel.length();
-                valorVariavel = linha.substring(indexValorVariavel,linha.length() - 1);
+                linhaDef = linha.substring(indexNomeVariavel, linha.length() - 1);
+                nomeVariavel = linha.substring(indexNomeVariavel, linhaDef.indexOf(" ") + 8);
+                int indexValorVariavel = linha.indexOf(nomeVariavel) + 1 + nomeVariavel.length();
+                valorVariavel = linha.substring(indexValorVariavel, linha.length() - 1);
                 variavelValor.put(nomeVariavel, valorVariavel);
                 variavelNome.add(nomeVariavel);
             }
@@ -116,7 +116,7 @@ public class ProcessamentoArquivo {
         BufferedReader br;
         String linha = "", linhaAntes, linhaDps;
         String arq = "";
-        for (int j = 0; j < variavelNome.size(); j++){
+        for (int j = 0; j < variavelNome.size(); j++) {
             for (int i = 0; i < variavelNome.size(); i++) {
                 br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
                 arq = "";
