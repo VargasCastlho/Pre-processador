@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.Buffer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -10,6 +11,7 @@ public class Main {
         AtivarComentarioSimples(nome);
         AtivarComentarioComplexo(nome);
         AtivarTratarDefine(nome);
+        AtivarCompactacao(nome);
     }
 
     static void AtivarCriarArquivoProcessado(String nome) throws IOException {
@@ -53,4 +55,12 @@ public class Main {
         br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
         ProcessamentoArquivo.TratarDefine(br, nome);
     }
+
+    static void AtivarCompactacao(String nome) throws IOException {
+        BufferedReader br;
+        br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
+        ProcessamentoArquivo.tratarCompactacao(br,nome);
+
+    }
+
 }

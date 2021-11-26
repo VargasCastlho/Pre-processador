@@ -38,7 +38,7 @@ public class ProcessamentoArquivo {
                 else
                     arq += linha.substring(0, indexPrimeiro);
                 linha = br.readLine();
-                while (linha.contains("*/") == false) {
+                while (!linha.contains("*/")) {
                     linha = "";//tirar todas as linhas enquanto não encontrar o "*/"
                     arq += linha;
                     linha = br.readLine();
@@ -91,7 +91,7 @@ public class ProcessamentoArquivo {
         return arq;
     }
 
-    static void TratarDefine(BufferedReader br, String nome) throws IOException { //é String, botei void só para rodar e n bugar nada
+    static void TratarDefine(BufferedReader br, String nome) throws IOException {
         Map<String, String> variavelValor = new HashMap<>();
         ArrayList<String> variavelNome = new ArrayList();
         String linha, linhaDef;
@@ -137,6 +137,37 @@ public class ProcessamentoArquivo {
                 TratamentoArquivo.EscritaArquivo(arq, nome);
             }
         }
+    }
+
+    static void tratarCompactacao(BufferedReader br,String nome) throws IOException {
+        //1ºpasso compactar toda a linha particularmente com as restrições quanto à função
+        String linha;
+        String arq = "";
+        while(br.ready()) {
+            linha=br.readLine()+"\n";
+            if(linha.contains("int")||linha.contains("char")||linha.contains("return")) {
+                linha.replaceFirst(" ","´");//tombei os espaços pós tipos de funções para diferenciar de outro espaço
+            }
+
+            linha.replaceAll(" ", "");
+            linha.replaceAll("´"," ");
+            arq += linha;
+
+        }
+        TratamentoArquivo.EscritaArquivo(arq, nome);
+        //compactacaoTotal(br,nome);
+    }
+
+    static void compactacaoTotal(BufferedReader br,String nome) throws IOException {
+        //2º passo concatenar todas as linhas
+        String linha;
+        String arq = "";
+        while(br.ready()) {
+            linha = br.readLine() + "\n";
+            arq+=linha.concat(arq);
+        }
+        TratamentoArquivo.EscritaArquivo(arq,nome);
+
     }
 
 }
