@@ -145,12 +145,17 @@ public class ProcessamentoArquivo {
         String arq = "";
         while(br.ready()) {
             linha=br.readLine()+"\n";
-            if(linha.contains("int")||linha.contains("char")||linha.contains("return")) {
-                linha.replaceFirst(" ","´");//tombei os espaços pós tipos de funções para diferenciar de outro espaço
+            if(linha.contains("int") || linha.contains("char")||linha.contains("return")) {
+                linha = linha.replace(" ","´");//tombei apenas os espaços pós tipos ou returns para diferenciar de outro espaço
             }
 
-            linha.replaceAll(" ", "");
-            linha.replaceAll("´"," ");
+            // Após tombar os espaçoes que não queremos retirar retiraremos todos os outros espaços que não queremos retirar.
+
+            linha = linha.replaceAll(" ", "");
+
+            //Depois de retirar os outros espaços que queremos tirar, retornaremos com os espaços tombados posteriormentes
+
+            linha  = linha.replaceAll("´"," ");
             arq += linha;
 
         }
@@ -159,12 +164,12 @@ public class ProcessamentoArquivo {
     }
 
     static void compactacaoTotal(BufferedReader br,String nome) throws IOException {
-        //2º passo concatenar todas as linhas
+        //2º juntar todas as linhas brutalmente, já que só falta isso.
         String linha;
         String arq = "";
         while(br.ready()) {
-            linha = br.readLine() + "\n";
-            arq+=linha.concat(arq);
+            linha = br.readLine();
+            arq += linha.concat(arq);
         }
         TratamentoArquivo.EscritaArquivo(arq,nome);
 
