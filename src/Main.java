@@ -60,7 +60,8 @@ public class Main {
         BufferedReader br;
         br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
         ProcessamentoArquivo.tratarCompactacao(br,nome);
-
+        br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
+        ProcessamentoArquivo.compactacaoTotal(br,nome);
     }
 
 }

@@ -144,23 +144,53 @@ public class ProcessamentoArquivo {
         String linha;
         String arq = "";
         while(br.ready()) {
+            int verifica = 0;
             linha=br.readLine()+"\n";
-            if(linha.contains("int") || linha.contains("char")||linha.contains("return")) {
-                linha = linha.replace(" ","´");//tombei apenas os espaços pós tipos ou returns para diferenciar de outro espaço
+            if(linha.contains("int")) {
+                String string = "int";
+                linha = linha.replace(string+" ", string+"´");//tombei apenas os espaços pós tipos ou returns para diferenciar de outro espaço
+                linha = linha.replace(" ","");
+                linha = linha.replace(string+"´",string+" ");
+                verifica = 1;
             }
+            if(linha.contains("char")){
+                String string = "char";
+                linha = linha.replace(string+" ", string+"´");//tombei apenas os espaços pós tipos ou returns para diferenciar de outro espaço
+                linha = linha.replace(" ","");
+                linha = linha.replace(string+"´",string+" ");
+                verifica = 1;
+            }
+            if(linha.contains("return")){
+                String string = "return";
+                linha = linha.replace(string+" ", string+"´");//tombei apenas os espaços pós tipos ou returns para diferenciar de outro espaço
+                linha = linha.replace(" ","");
+                linha = linha.replace(string+"´",string+" ");
+                verifica = 1;
+            }
+            if(linha.contains("void")){
+                String string = "void";
+                linha = linha.replace(string+" ", string+"´");//tombei apenas os espaços pós tipos ou returns para diferenciar de outro espaço
+                linha = linha.replace(" ","");
+                linha = linha.replace(string+"´",string+" ");
+                verifica = 1;
+            }
+            if(linha.equals("\n")){
+                linha = "";
+            }
+            if(verifica == 0){
 
-            // Após tombar os espaçoes que não queremos retirar retiraremos todos os outros espaços que não queremos retirar.
+                // Após tombar os espaçoes que não queremos retirar retiraremos todos os outros espaços que não queremos retirar.
 
-            linha = linha.replaceAll(" ", "");
+                linha = linha.replace(" ", "");
 
-            //Depois de retirar os outros espaços que queremos tirar, retornaremos com os espaços tombados posteriormentes
 
-            linha  = linha.replaceAll("´"," ");
+                //Depois de retirar os outros espaços que queremos tirar, retornaremos com os espaços tombados posteriormentes
+            }
             arq += linha;
 
         }
+        TratamentoArquivo.LeituraFecharArquivo(br);
         TratamentoArquivo.EscritaArquivo(arq, nome);
-        //compactacaoTotal(br,nome);
     }
 
     static void compactacaoTotal(BufferedReader br,String nome) throws IOException {
@@ -169,10 +199,10 @@ public class ProcessamentoArquivo {
         String arq = "";
         while(br.ready()) {
             linha = br.readLine();
-            arq += linha.concat(arq);
+            arq += linha;
         }
-        TratamentoArquivo.EscritaArquivo(arq,nome);
-
+        TratamentoArquivo.LeituraFecharArquivo(br);
+        TratamentoArquivo.EscritaArquivo(arq, nome);
     }
 
 }
