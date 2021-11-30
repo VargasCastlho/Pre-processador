@@ -1,11 +1,11 @@
+import javax.swing.*;
 import java.io.*;
 import java.nio.Buffer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         String nome;
-        //nome = JOptionPane.showInputDialog(null, "Entre com o nome do arquivo");
-        nome = "arquivo_entrada.c";
+        nome = JOptionPane.showInputDialog(null, "Entre com o nome do arquivo");
         AtivarCriarArquivoProcessado(nome);
         AtivarTratarBiblioteca(nome);
         AtivarComentarioSimples(nome);
