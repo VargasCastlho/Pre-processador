@@ -8,11 +8,15 @@ public class Main {
         //nome = JOptionPane.showInputDialog(null, "Entre com o nome do arquivo:");
         nome = "arquivo_entrada.c";
         AtivarCriarArquivoProcessado(nome);
-        AtivarTratarBiblioteca(nome);
+        AtivarTratarBibliotecaExterna(nome);
         AtivarComentarioSimples(nome);
         AtivarComentarioComplexo(nome);
         AtivarTratarDefine(nome);
         AtivarCompactacao(nome);
+        AtivarTratarBiblioteca(nome);
+        AtivarComentarioSimples(nome);
+        AtivarComentarioComplexo(nome);
+        AtivarTratarLinha(nome);
     }
 
     static void AtivarCriarArquivoProcessado(String nome) throws IOException {
