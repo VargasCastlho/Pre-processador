@@ -146,36 +146,16 @@ public class ProcessamentoArquivo {
         while(br.ready()) {
             int verifica = 0;
             linha=br.readLine()+"\n";
-            if(linha.contains("int")) {
-                String string = "int";
-                linha = linha.replace(string+" ", string+"´");//tombei apenas os espaços pós tipos ou returns para diferenciar de outro espaço
-                linha = linha.replace(" ","");
-                linha = linha.replace(string+"´",string+" ");
-                verifica = 1;
-            }
-            if(linha.contains("char")){
-                String string = "char";
-                linha = linha.replace(string+" ", string+"´");//tombei apenas os espaços pós tipos ou returns para diferenciar de outro espaço
-                linha = linha.replace(" ","");
-                linha = linha.replace(string+"´",string+" ");
-                verifica = 1;
-            }
-            if(linha.contains("return")){
-                String string = "return";
-                linha = linha.replace(string+" ", string+"´");//tombei apenas os espaços pós tipos ou returns para diferenciar de outro espaço
-                linha = linha.replace(" ","");
-                linha = linha.replace(string+"´",string+" ");
-                verifica = 1;
-            }
-            if(linha.contains("void")){
-                String string = "void";
-                linha = linha.replace(string+" ", string+"´");//tombei apenas os espaços pós tipos ou returns para diferenciar de outro espaço
-                linha = linha.replace(" ","");
-                linha = linha.replace(string+"´",string+" ");
-                verifica = 1;
-            }
-            if(linha.equals("\n")){
-                linha = "";
+            ArrayList<String> vetor = new ArrayList();
+            vetor.add("int");vetor.add("char");vetor.add("return");vetor.add("void");vetor.add("typedef struct");
+            for(int i = 0; i<vetor.size(); i++) {
+                if (linha.contains(vetor.get(i))) {
+                    String string = vetor.get(i);
+                    linha = linha.replace(string + " ", string + "´");//tombei apenas os espaços pós tipos ou returns para diferenciar de outro espaço
+                    linha = linha.replace(" ", "");
+                    linha = linha.replace(string + "´", string + " ");
+                    verifica = 1;
+                }
             }
             if(verifica == 0){
 
@@ -199,10 +179,60 @@ public class ProcessamentoArquivo {
         String arq = "";
         while(br.ready()) {
             linha = br.readLine();
-            arq += linha;
+            if(linha.contains("#include")||linha.contains("#define"))
+                arq += linha + "\n";
+            else
+                arq += linha;
         }
         TratamentoArquivo.LeituraFecharArquivo(br);
         TratamentoArquivo.EscritaArquivo(arq, nome);
     }
 
+    static String TratarLinha(BufferedReader br) {
+        String arq = "";
+        String linha = "";
+        try {
+            while (br.ready()) {
+                linha = br.readLine() + "\n";
+                if(linha.equals("\n")){
+                    linha = "";
+                }
+                arq += linha;
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Erro: " + e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return arq;
+    }
+
+    static String TratarBibliotecaExterna(BufferedReader br) {
+        String arq = "";
+        String arquivo = "";
+        String biblioteca;
+        String linha = "";
+        BufferedReader aux;
+        try {
+            while (br.ready()) {
+                linha = br.readLine() + "\n";
+                if (linha.contains("#include")&&linha.substring(linha.indexOf("#include ") + 9).startsWith("\"")) {
+                    String include = "#include ";
+                    int index = linha.indexOf(include) + 10;
+                    biblioteca = linha.substring(index, linha.length() - 2);
+                    aux = TratamentoArquivo.LeituraAbrirArquivo(biblioteca);
+                    while (aux.ready()) {
+                        arquivo += aux.readLine() + "\n";
+                    }
+                    linha = arquivo;
+                }
+                arq += linha;
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Erro: " + e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return arq;
+    }
 }

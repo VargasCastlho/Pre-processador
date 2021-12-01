@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "bib.h"
 #define DEZ 10
 #define QUINZE NUM

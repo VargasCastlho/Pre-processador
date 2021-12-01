@@ -5,7 +5,8 @@ import java.nio.Buffer;
 public class Main {
     public static void main(String[] args) throws IOException {
         String nome;
-        nome = JOptionPane.showInputDialog(null, "Entre com o nome do arquivo");
+        //nome = JOptionPane.showInputDialog(null, "Entre com o nome do arquivo:");
+        nome = "arquivo_entrada.c";
         AtivarCriarArquivoProcessado(nome);
         AtivarTratarBiblioteca(nome);
         AtivarComentarioSimples(nome);
@@ -64,4 +65,21 @@ public class Main {
         ProcessamentoArquivo.compactacaoTotal(br,nome);
     }
 
+    static void AtivarTratarLinha(String nome) throws IOException {
+        BufferedReader br;
+        String arquivo;
+        br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
+        arquivo = ProcessamentoArquivo.TratarLinha(br);
+        TratamentoArquivo.LeituraFecharArquivo(br);
+        TratamentoArquivo.EscritaArquivo(arquivo, nome);
+    }
+
+    static void AtivarTratarBibliotecaExterna(String nome) throws IOException {
+        BufferedReader br;
+        String arquivo;
+        br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
+        arquivo = ProcessamentoArquivo.TratarBibliotecaExterna(br);
+        TratamentoArquivo.LeituraFecharArquivo(br);
+        TratamentoArquivo.EscritaArquivo(arquivo, nome);
+    }
 }
