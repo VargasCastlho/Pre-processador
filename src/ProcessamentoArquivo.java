@@ -37,7 +37,6 @@ public class ProcessamentoArquivo {
                     arq += linha.substring(0, indexPrimeiro) + "\n";
                 else
                     arq += linha.substring(0, indexPrimeiro);
-                linha = br.readLine();
                 while (!linha.contains("*/")) {
                     linha = "";//tirar todas as linhas enquanto não encontrar o "*/"
                     arq += linha;
@@ -45,8 +44,9 @@ public class ProcessamentoArquivo {
                 }
                 //chegando aqui quer dizer que a linha contem o "*/"
                 int indexSegundo = linha.indexOf("*/");
-                if (indexSegundo + 2 == linha.length())
+                if (indexSegundo + 2 == linha.length()) {
                     arq += linha.substring(indexSegundo + 2);
+                }
                 else
                     arq += linha.substring(indexSegundo + 2) + "\n";
             }
@@ -63,11 +63,11 @@ public class ProcessamentoArquivo {
         try {
             while (br.ready()) {
                 linha = br.readLine() + "\n";
-                if (linha.contains("#include")) {
+                if (linha.contains("#include")&&linha.substring(linha.indexOf("#include ") + 9).startsWith("<")) {
                     String include = "#include ";
                     int index = linha.indexOf(include) + 10;
                     biblioteca = linha.substring(index, linha.length() - 2);
-                    aux = TratamentoArquivo.LeituraAbrirArquivo(biblioteca);
+                    aux = TratamentoArquivo.LeituraAbrirArquivo("C:\\MinGW\\include\\" + biblioteca);
                     while (aux.ready()) {
                         arquivo += aux.readLine() + "\n";
                     }
@@ -194,7 +194,7 @@ public class ProcessamentoArquivo {
         try {
             while (br.ready()) {
                 linha = br.readLine() + "\n";
-                if(linha.equals("\n")){
+                if(linha.isBlank()){
                     linha = "";
                 }
                 arq += linha;
@@ -220,7 +220,8 @@ public class ProcessamentoArquivo {
                     String include = "#include ";
                     int index = linha.indexOf(include) + 10;
                     biblioteca = linha.substring(index, linha.length() - 2);
-                    aux = TratamentoArquivo.LeituraAbrirArquivo(biblioteca);
+                    System.out.println(biblioteca);
+                    aux = TratamentoArquivo.LeituraAbrirArquivo("C:\\MinGW\\include\\" + biblioteca);
                     while (aux.ready()) {
                         arquivo += aux.readLine() + "\n";
                     }

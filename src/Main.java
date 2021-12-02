@@ -1,6 +1,5 @@
-import javax.swing.*;
-import java.io.*;
-import java.nio.Buffer;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -64,9 +63,9 @@ public class Main {
     static void AtivarCompactacao(String nome) throws IOException {
         BufferedReader br;
         br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
-        ProcessamentoArquivo.tratarCompactacao(br,nome);
+        ProcessamentoArquivo.tratarCompactacao(br, nome);
         br = TratamentoArquivo.LeituraAbrirArquivo(TratamentoArquivo.NomeProcessado(nome));
-        ProcessamentoArquivo.compactacaoTotal(br,nome);
+        ProcessamentoArquivo.compactacaoTotal(br, nome);
     }
 
     static void AtivarTratarLinha(String nome) throws IOException {

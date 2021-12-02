@@ -3,6 +3,6 @@
 
 // Isso é uma soma
 int soma(int x, int y) {
-    x += y;
+    x += y; /*  aeh */ printf("amém");
     return x;
 }
